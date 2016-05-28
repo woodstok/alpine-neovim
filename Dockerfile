@@ -30,4 +30,4 @@ RUN  git clone https://github.com/neovim/neovim.git && \
   make install && \
   cd ../ && rm -rf nvim
 
-ENTRYPOINT /usr/local/bin/nvim 
+CMD /usr/local/bin/nvim 
