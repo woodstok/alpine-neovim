@@ -54,6 +54,6 @@ RUN curl -fLo /root/.config/nvim/autoload/plug.vim --create-dirs https://raw.git
 COPY init.vim /root/.config/nvim/init.vim
 
 # install all plugins
-# RUN some vim command
+RUN nvim +PlugInstall +qa 
 
 CMD /usr/local/bin/nvim 
