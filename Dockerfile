@@ -58,6 +58,7 @@ RUN nvim +PlugInstall +qa
 ENV TERM xterm256-color
 
 WORKDIR /data
+COPY neovim /neovim
 # remove packages now... 
 RUN apk del alpine-sdk libtool cmake automake m4 autoconf unzip py-pip curl
 CMD /usr/local/bin/nvim 
