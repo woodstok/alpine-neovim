@@ -1,0 +1,10 @@
+#!/bin/bash
+
+filename=$1
+if [[ -n "$filename" ]];then
+    dir="$PWD"
+else
+    dir="$name"
+fi
+
+docker run -it --rm -v "$name":/data fxdgear/alpine-neovim:latest

@@ -57,6 +57,7 @@ COPY init.vim /root/.config/nvim/init.vim
 RUN nvim +PlugInstall +qa 
 ENV TERM xterm256-color
 
+WORKDIR /data
 # remove packages now... 
 RUN apk del alpine-sdk libtool cmake automake m4 autoconf unzip py-pip curl
 CMD /usr/local/bin/nvim 
