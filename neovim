@@ -1,10 +1,14 @@
 #!/bin/bash
 
 filename=$1
-if [[ -n "$filename" ]];then
-    dir="$PWD"
+if [[ -z "$filename" ]];then
+    # If there is no filename passed in, then lets assume we want to open the cwd.
+    dir=$("dirname $pwd")
 else
-    dir="$name"
+    # we have a filename, so lets determine the abs of the file
+    # and mount that directory
+    abs=$(readlink -f "$filename")
+    dir=$(dirname "$abs")
 fi
 
-docker run -it --rm -v "$name":/data fxdgear/alpine-neovim:latest
+docker run -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$@"
