@@ -3,7 +3,7 @@
 filename=$1
 if [[ -z "$filename" ]];then
     # If there is no filename passed in, then lets assume we want to open the cwd.
-    dir=$("dirname $pwd")
+    dir=$(dirname "$PWD")
 else
     # we have a filename, so lets determine the abs of the file
     # and mount that directory
