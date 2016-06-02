@@ -10,5 +10,4 @@ else
     abs=$(readlink -f "$filename")
     dir=$(dirname "$abs")
 fi
-
 docker run -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$@"

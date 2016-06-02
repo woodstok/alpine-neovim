@@ -46,7 +46,7 @@ RUN  git clone https://github.com/neovim/neovim.git && \
   cd ../ && rm -rf nvim
 
 # Install neovim python support
-RUN pip install neovim
+RUN pip install neovim pep8
 
 # install vim-plug
 RUN curl -fLo /root/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
