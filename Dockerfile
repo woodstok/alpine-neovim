@@ -3,7 +3,7 @@ MAINTAINER Nick Lang <nick@nicklang.com>
 
 RUN apk add --update \
   git \
-  alpine-sdk \
+  alpine-sdk build-base\
   libtool \
   cmake \
   automake \
@@ -16,6 +16,8 @@ RUN apk add --update \
   python-dev \
   py-pip \
   curl \
+  make \
+  cmake \
   && rm -rf /var/cache/apk/*
 
 WORKDIR /tmp
