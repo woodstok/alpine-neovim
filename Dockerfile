@@ -53,6 +53,7 @@ RUN pip install neovim pep8
 RUN curl -fLo /root/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # copy init.vim into container
 COPY init.vim /root/.config/nvim/init.vim
+COPY pep8 /root/.config/pep8
 
 # install all plugins
 RUN nvim +PlugInstall +qa 
