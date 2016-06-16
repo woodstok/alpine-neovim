@@ -6,11 +6,12 @@ if [[ -d "$filename" ]]; then
     dir=$(readlink -e "$filename")
     file="/data"
 
-elif [[ -f "$filename" ]]; then
-    # this is a regular file so lets make the volume the directory
+elif [[ -f "$filename" || ! -f "$filename" ]]; then
+    # this is a regular file (or creating a new file) so lets make the volume the directory
     # the file lives in and mount that
     abs=$(readlink -f "$filename")
     dir=$(dirname "$abs")
     file=$(basename "$abs")
+
 fi
 docker run -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$file"
