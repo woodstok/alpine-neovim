@@ -22,6 +22,10 @@ RUN apk add --update \
 WORKDIR /tmp
 ENV CMAKE_EXTRA_FLAGS=-DENABLE_JEMALLOC=OFF
 
+# Required for running this on my archbox
+RUN adduser -S nick -u 1000 -G users
+RUN adduser -S nicklang -G users
+
 RUN git clone https://github.com/neovim/libtermkey.git && \
   cd libtermkey && \
   make && \
@@ -60,5 +64,6 @@ RUN nvim +PlugInstall +qa
 ENV TERM xterm256-color
 
 WORKDIR /data
+RUN chgrp -R users .
 COPY neovim /neovim
 CMD /usr/local/bin/nvim 

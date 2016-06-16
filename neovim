@@ -1,5 +1,5 @@
 #!/bin/bash
-
+user="$(whoami)"
 filename=$1
 if [[ -d "$filename" ]]; then
     # we have a directory and lets set the volume mount here
@@ -14,4 +14,4 @@ elif [[ -f "$filename" || ! -f "$filename" ]]; then
     file=$(basename "$abs")
 
 fi
-docker run -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$file"
+docker run --user $user -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$file"
