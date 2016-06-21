@@ -10,10 +10,14 @@ RUN apk add --update \
   autoconf \
   linux-headers \
   unzip \
-  ncurses-dev \
+  ncurses ncurses-dev \
   python \
   python-dev \
   py-pip \
+  clang \
+  go \
+  nodejs \
+  xz \
   curl \
   make \
   cmake \
@@ -52,18 +56,22 @@ RUN  git clone https://github.com/neovim/neovim.git && \
 
 # Install neovim python support
 RUN pip install neovim pep8
+RUN chgrp -R users .
+
+USER nick
 
 # install vim-plug
-RUN curl -fLo /root/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+RUN curl -fLo /home/nick/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # copy init.vim into container
-COPY init.vim /root/.config/nvim/init.vim
-COPY pep8 /root/.config/pep8
+COPY init.vim /home/nick/.config/nvim/init.vim
+COPY pep8 /home/nick/.config/pep8
 
 # install all plugins
 RUN nvim +PlugInstall +qa 
+RUN cd /home/nick/.nvim/plugged/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
+
 ENV TERM xterm256-color
 
 WORKDIR /data
-RUN chgrp -R users .
 COPY neovim /neovim
 CMD /usr/local/bin/nvim 

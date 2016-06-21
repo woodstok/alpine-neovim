@@ -1,17 +1,23 @@
 #!/bin/bash
 user="$(whoami)"
 filename=$1
+pwd=$(dirname `pwd`)
+
 if [[ -d "$filename" ]]; then
     # we have a directory and lets set the volume mount here
     dir=$(readlink -e "$filename")
     file="/data"
-
+    echo "-d"
+elif [[ -z "$filename" ]]; then
+    dir=$pwd
+    file="/data"
 elif [[ -f "$filename" || ! -f "$filename" ]]; then
     # this is a regular file (or creating a new file) so lets make the volume the directory
     # the file lives in and mount that
     abs=$(readlink -f "$filename")
     dir=$(dirname "$abs")
     file=$(basename "$abs")
-
 fi
-docker run --user $user -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$file"
+
+cmd="docker run --user $user -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$file""
+exec $cmd
