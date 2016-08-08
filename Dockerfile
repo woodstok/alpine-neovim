@@ -10,7 +10,7 @@ RUN apk add --update \
   autoconf \
   linux-headers \
   unzip \
-  ncurses ncurses-dev \
+  ncurses ncurses-dev ncurses-libs\
   python \
   python-dev \
   py-pip \
