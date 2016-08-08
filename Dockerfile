@@ -68,7 +68,7 @@ COPY pep8 /home/nick/.config/pep8
 
 # install all plugins
 RUN nvim +PlugInstall +qa 
-RUN cd /home/nick/.nvim/plugged/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
+RUN cd /home/nick/.nvim/plugged/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer --system-libclang 
 
 ENV TERM xterm256-color
 
