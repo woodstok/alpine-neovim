@@ -29,6 +29,7 @@ ENV CMAKE_EXTRA_FLAGS=-DENABLE_JEMALLOC=OFF
 # Required for running this on my archbox
 RUN adduser -S nick -u 1000 -G users
 RUN adduser -S nicklang -G users
+RUN adduser -S ubuntu -G users
 
 RUN git clone https://github.com/neovim/libtermkey.git && \
   cd libtermkey && \
