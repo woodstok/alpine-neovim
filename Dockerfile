@@ -59,6 +59,7 @@ RUN  git clone https://github.com/neovim/neovim.git && \
 RUN pip install neovim pep8
 RUN chgrp -R users .
 
+COPY install /usr/local/bin/install-neovim
 USER nick
 
 # install vim-plug

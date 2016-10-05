@@ -19,5 +19,7 @@ elif [[ -f "$filename" || ! -f "$filename" ]]; then
     file=$(basename "$abs")
 fi
 
+
 cmd="docker run --user $user -it --rm -v "$dir":/data fxdgear/alpine-neovim:latest /usr/local/bin/nvim "$file""
+echo $cmd
 exec $cmd
